@@ -39,7 +39,7 @@ deleteBtn.addEventListener('click',function(){
 })
 
 textArea.addEventListener('keydown',function(e){
-  console.log(e);
+ // console.log(e);
   let key=e.key;
  // console.log(key);
 
@@ -72,4 +72,13 @@ function createTicket(){
   //console.log(ticketCont);
 
   mainCont.appendChild(ticketCont);
+  
+  // deleting the ticket
+  ticketCont.addEventListener('click',function(){
+    // deleting ticket button only when red appeard on delete
+    if(isDeleteBtnActive){
+    ticketCont.remove();
+    }
+  })
+
 } 
