@@ -39,13 +39,19 @@ deleteBtn.addEventListener('click',function(){
 })
 
 textArea.addEventListener('keydown',function(e){
-  //console.log(e);
+  console.log(e);
   let key=e.key;
  // console.log(key);
 
  if(key == "Enter"){
   //generate a ticket
   createTicket();
+  // hiding the modal
+  modalCont.style.display ="none";
+  isModalHidden= true;
+  //empty the textarea.value
+  e.target.value="";
+
  }
 
 })
