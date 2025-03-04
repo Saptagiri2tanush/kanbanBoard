@@ -17,6 +17,25 @@ let mainCont=document.querySelector('.main-cont');
 let lockUnlockBtn=document.querySelector('.lock-unlock-btn i');
 console.log(lockUnlockBtn);
 
+let allPriorityColor=document.querySelectorAll('.priority-color');
+let priorityColor='red';
+
+for(let i=0;i<allPriorityColor.length;i++){
+  allPriorityColor[i].addEventListener('click',function(){
+   // console.log(allPriorityColor[i].classList[1]);
+
+   //before we add , we will remove border from all
+   for(let j=0;j<allPriorityColor.length;j++){
+    allPriorityColor[j].classList.remove('active');
+   }
+
+   allPriorityColor[i].classList.add('active');
+
+   priorityColor=allPriorityColor[i].classList[1];
+
+  })
+}
+
 // Instantiate
 var uid = new ShortUniqueId();
 
@@ -77,7 +96,7 @@ function createTicket(task){
   
   ticketCont.className='ticket-cont'; // <div class="ticket-cont"></div>
 
-  ticketCont.innerHTML = `<div class="ticket-color">
+  ticketCont.innerHTML = `<div class="ticket-color ${priorityColor}">
                          </div><div class="ticket-id">#${id}</div>
                           <div class="ticket-area">${task}</div>
                         <div class='lock-unlock-btn'>
