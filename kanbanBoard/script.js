@@ -14,6 +14,9 @@ let isDeleteBtnActive=false;// maintain state for delete button
 let textArea=document.querySelector('.textarea-cont');
 let mainCont=document.querySelector('.main-cont');
 
+let lockUnlockBtn=document.querySelector('.lock-unlock-btn i');
+console.log(lockUnlockBtn);
+
 // Instantiate
 var uid = new ShortUniqueId();
 
@@ -91,6 +94,21 @@ function createTicket(task){
     if(isDeleteBtnActive){
     ticketCont.remove();
     }
+  })
+  //handling lockunlock ticket
+  let lockUnlockBtn=ticketCont.querySelector('.lock-unlock-btn i');
+  let ticketArea=document.querySelector('.ticket-area');
+  //console.log(lockUnlockBtn);
+  lockUnlockBtn.addEventListener('click',function(){
+      if (lockUnlockBtn.classList.contains('fa-lock')){
+        lockUnlockBtn.classList.remove('fa-lock');
+        lockUnlockBtn.classList.add('fa-lock-open');
+        ticketArea.setAttribute('contenteditable',true);
+      }else{
+        lockUnlockBtn.classList.remove('fa-lock-open');
+        lockUnlockBtn.classList.add('fa-lock');
+        ticketArea.setAttribute('contenteditable',false);
+      }
   })
 
 } 
