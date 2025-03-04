@@ -1,3 +1,9 @@
+:root {
+    --bgColor: #EEF0E5;
+    --darkBgColor: #163020;
+    --iconColor:#304D30
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -5,10 +11,8 @@
 }
 
 
-
-
 .toolbox-cont{
-background-color:black;
+background-color: var(--darkBgColor);
 height:6rem;
 display:flex;
 align-items:center;
@@ -17,7 +21,7 @@ align-items:center;
 .toolbox-priority-cont{
 height:3rem;
 width: 20rem;
-background-color: white;
+background-color: var(--bgColor);
 margin-left: 5rem;
 display:flex;
 align-items:center;
@@ -30,25 +34,25 @@ width:3rem;
 
 }
 .red{
-    background-color: red;
+    background-color: #750E21;
 }
 
 .blue{
-    background-color: blue;
+    background-color: #213555;
 }
 
 .green{
-    background-color: green;
+    background-color: #163020;
 }
 
 
 .pink{
-    background-color: pink;
+    background-color: #E9D5DA;
 }
 .action-btn-cont{
 height: 3rem;
 width: 10rem;
-background-color: white;
+background-color: var(--bgColor);
 margin-left: 5rem;
 display: flex;
 align-items: center;
@@ -57,10 +61,12 @@ justify-content: space-evenly;
 
 .add-btn{
     font-size: 1.75rem;
+    color: var(--darkBgColor);
 }
 
 .remove-btn{
 font-size: 1.5rem;
+color: var(--darkBgColor);
 }
 
 .main-cont{
@@ -69,6 +75,7 @@ flex-wrap:wrap;
 gap:2rem;
 justify-content:space-evenly;
 margin: 2rem 1rem;
+background-color: var(--bgColor);
 }
 
 .ticket-cont{
@@ -82,17 +89,20 @@ position: relative;
 
 .ticket-color{
 height:1rem;
-background-color: pink;
+background-color: #E9D5DA;
+
 }
 .ticket-id{
 
-background-color: grey;
+
 height: 1.5rem;
+font-weight: 600;
+    font-size: 0.75rem;
 }
 .ticket-area{
-padding:5px;
+padding:3px;
 height: calc(10rem-1rem-1.5rem);
-font-size:1.25rem;
+font-size:1rem;
 outline: none;
 }
 .modal-cont{
@@ -123,7 +133,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-evenly;
-background-color: aliceblue;
+background-color: var(--bgColor);
 
 }
 .priority-color{
