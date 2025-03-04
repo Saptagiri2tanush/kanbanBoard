@@ -75,6 +75,7 @@ margin: 2rem 1rem;
 height:10rem;
 width:15rem;
 background-color: yellow;
+position: relative;
 
 }
 
@@ -134,4 +135,8 @@ background-color: aliceblue;
     border: 5px solid yellow;
 }
 
-
+.lock-unlock-btn{
+    position:absolute;
+    bottom: 5px;
+    right: 5px;
+}

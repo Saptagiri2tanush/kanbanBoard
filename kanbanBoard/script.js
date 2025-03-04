@@ -75,8 +75,11 @@ function createTicket(task){
   ticketCont.className='ticket-cont'; // <div class="ticket-cont"></div>
 
   ticketCont.innerHTML = `<div class="ticket-color">
-  </div><div class="ticket-id">#${id}</div>
-  <div class="ticket-area">${task}</div>`;
+                         </div><div class="ticket-id">#${id}</div>
+                          <div class="ticket-area">${task}</div>
+                        <div class='lock-unlock-btn'>
+                           <i class="fa-solid fa-lock"></i>
+                           </div>`;
 
   //console.log(ticketCont);
 
