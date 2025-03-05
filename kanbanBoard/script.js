@@ -14,6 +14,8 @@ let isDeleteBtnActive=false;// maintain state for delete button
 let textArea=document.querySelector('.textarea-cont');
 let mainCont=document.querySelector('.main-cont');
 
+let color = ['red','blue','green','pink'];
+
 let lockUnlockBtn=document.querySelector('.lock-unlock-btn i');
 console.log(lockUnlockBtn);
 
@@ -22,7 +24,7 @@ let priorityColor='red';
 
 for(let i=0;i<allPriorityColor.length;i++){
   allPriorityColor[i].addEventListener('click',function(){
-   // console.log(allPriorityColor[i].classList[1]);
+    console.log(allPriorityColor[i].classList);
 
    //before we add , we will remove border from all
    for(let j=0;j<allPriorityColor.length;j++){
@@ -71,8 +73,8 @@ textArea.addEventListener('keydown',function(e){
  if(key == "Enter"){
   //generate a ticket
   
-  console.log(e.target.value);
-  createTicket(e.target.value);
+  //console.log(e.target.value);
+  createTicket(textArea.value);
   // hiding the modal
   modalCont.style.display ="none";
   isModalHidden= true;
@@ -128,6 +130,23 @@ function createTicket(task){
         lockUnlockBtn.classList.add('fa-lock');
         ticketArea.setAttribute('contenteditable',false);
       }
+  })
+  //handling priority change or cylcic change of priority
+  let ticketColor=ticketCont.querySelector('ticket-color');
+  ticketColor.addEventListener('click',function(){
+    console.log(ticketColor);
+    let currentColor=ticketColor.classList[1];
+    let idx;
+    for(let i=0;i<color.length;i++){
+      if(currentColor ==color[i]){
+        idx=i;
+        break;
+      }
+    }
+    let nextIdx=(idx+1)%color.length;
+    let nextColor= color[nextIdx];
+    ticketColor.classList.remove(currentColor);
+    ticketColor.classList.add(nextColor);
   })
 
 } 
