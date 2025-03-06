@@ -170,27 +170,28 @@ function createTicket(task,priorityColor,ticketId){
     }
 
   })
-  //handling lockunlock ticket
-  let lockUnlockBtn=ticketCont.querySelector('.lock-unlock-btn i');
-  let ticketArea=document.querySelector('.ticket-area');
-  //console.log(lockUnlockBtn);
-  lockUnlockBtn.addEventListener('click',function(){
-      if (lockUnlockBtn.classList.contains('fa-lock')){
-        lockUnlockBtn.classList.remove('fa-lock');
-        lockUnlockBtn.classList.add('fa-lock-open');
-        ticketArea.setAttribute('contenteditable',true);
-      }else{
-        lockUnlockBtn.classList.remove('fa-lock-open');
-        lockUnlockBtn.classList.add('fa-lock');
-        ticketArea.setAttribute('contenteditable',false);
-      }
-      let ticketIndex = ticketArr.findIndex(function(ticketObj){
-        return ticketObj.id==id;
-      })
-      ticketArr[ticketIndex].value = ticketArea.innerText;
-     updateLocalStorage();
-      //console.log(ticketArr);
-  })
+    //handle lock unlock ticket
+    let lockUnlockBtn = ticketCont.querySelector('.lock-unlock-btn i');
+    let ticketArea = ticketCont.querySelector('.ticket-area');
+    // console.log(lockUnlockBtn)
+    lockUnlockBtn.addEventListener('click',function(){
+        if(lockUnlockBtn.classList.contains('fa-lock')){
+            lockUnlockBtn.classList.remove('fa-lock');
+            lockUnlockBtn.classList.add('fa-lock-open');
+            ticketArea.setAttribute('contenteditable','true');
+        }else{
+            lockUnlockBtn.classList.remove('fa-lock-open');
+            lockUnlockBtn.classList.add('fa-lock');
+            ticketArea.setAttribute('contenteditable','false')
+        }
+        let ticketIndex = ticketArr.findIndex(function(ticketObj){
+            return ticketObj.id == id;
+        })
+        ticketArr[ticketIndex].value = ticketArea.innerText;
+        updateLocalStorage();
+        // console.log(ticketArr);
+    })
+
   //handling priority change or cylcic change of priority
   let ticketColor=ticketCont.querySelector('.ticket-color');
   ticketColor.addEventListener('click',function(){
