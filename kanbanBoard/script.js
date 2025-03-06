@@ -16,6 +16,17 @@ let mainCont=document.querySelector('.main-cont');
 
 let color = ['red','blue','green','pink'];
 
+//Storing data of each ticket in the form of an object
+ let ticketArr=[];
+ if(localStorage.getItem('TaskArr')){
+  let ticketArrStr=localStorage.getItem("TaskArr");
+  ticketArr=JSON.parse(ticketArrStr);
+  for(let i=0;i<ticketArr.length;i++){
+    let ticket=ticketArr[i];
+    createTicket(ticket.value,ticket.color,ticket.id);
+  }
+ }
+
 let lockUnlockBtn=document.querySelector('.lock-unlock-btn i');
 console.log(lockUnlockBtn);
 
@@ -74,7 +85,7 @@ textArea.addEventListener('keydown',function(e){
   //generate a ticket
   
   //console.log(e.target.value);
-  createTicket(textArea.value);
+  createTicket(textArea.value,priorityColor);
   // hiding the modal
   modalCont.style.display ="none";
   isModalHidden= true;
@@ -85,7 +96,7 @@ textArea.addEventListener('keydown',function(e){
 
 })
 
-function createTicket(task){
+function createTicket(task,priorityColor,ticketId){
   //create the below structure with js and add it to main container
  // <div class="ticket-cont">
   //  <div class="ticket-color"></div>
@@ -93,7 +104,12 @@ function createTicket(task){
    // <div class="ticket-area">Some task</div>
   // </div>
 
-  let id=uid.rnd();
+  let id;
+  if(ticketId){//id is there it means we are creating from local storage
+    id=ticketId;
+  }else{//
+  id=uid.rnd();
+  }
   let ticketCont = document.createElement('div'); //<div></div>
   
   ticketCont.className='ticket-cont'; // <div class="ticket-cont"></div>
@@ -106,6 +122,13 @@ function createTicket(task){
                            </div>`;
 
   //console.log(ticketCont);
+  if(!ticketId){// only make changes in the array when ticketId is not passed. or 
+    // we can say it is created with UI and not from the localStorage.
+    ticketArr.push({id:id,color:priorityColor,value:task});
+    console.log(ticketArr);
+  let ticketArrStr = JSON.stringify(ticketArr);
+  localStorage.setItem("TaskArr",ticketArrStr);
+  }
 
   mainCont.appendChild(ticketCont);
   
@@ -132,7 +155,7 @@ function createTicket(task){
       }
   })
   //handling priority change or cylcic change of priority
-  let ticketColor=ticketCont.querySelector('ticket-color');
+  let ticketColor=ticketCont.querySelector('.ticket-color');
   ticketColor.addEventListener('click',function(){
     console.log(ticketColor);
     let currentColor=ticketColor.classList[1];
@@ -145,6 +168,7 @@ function createTicket(task){
     }
     let nextIdx=(idx+1)%color.length;
     let nextColor= color[nextIdx];
+    console.log(nextColor);
     ticketColor.classList.remove(currentColor);
     ticketColor.classList.add(nextColor);
   })
